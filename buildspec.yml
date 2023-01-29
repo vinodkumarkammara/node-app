@@ -32,7 +32,10 @@ phases:
       
       - echo Start Trivy Image Scanning...
       - trivy $REPOSITORY_URI:$IMAGE_TAG > image-scan-report.html
-      - trivy --no-progress --exit-code 0 --severity HIGH,CRITICAL --auto-refresh $REPOSITORY_URI:$IMAGE_TAG
+      - trivy image --severity 'CRITICA' e20aec0
+      - trivy -v
+      - tree
+      #- trivy --no-progress --exit-code 0 --severity HIGH,CRITICAL --auto-refresh $REPOSITORY_URI:$IMAGE_TAG
       #- trivy -f json -o imagedefinitions.json --exit-code 0 --severity HIGH,MEDIUM,LOW --quiet --auto-refresh $REPOSITORY_URI:$IMAGE_TAG
       #- trivy -f json -o imagedefinitions.json --exit-code 1 --severity HIGH,CRITICAL --quiet --auto-refresh $REPOSITORY_URI:$IMAGE_TAG
 artifacts:
