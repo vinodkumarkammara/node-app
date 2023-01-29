@@ -10,8 +10,10 @@ phases:
       - REPOSITORY_URI=975136350146.dkr.ecr.ap-south-1.amazonaws.com/node-app
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
-      - "wget https://github.com/aquasecurity/trivy/releases/download/v0.1.6/trivy_0.1.6_Linux-64bit.deb"
-      - "dpkg -i trivy_0.1.6_Linux-64bit.deb"
+      
+      - echo Start to Download Trivy Image Scaning....
+      - curl -L https://github.com/aquasecurity/trivy/releases/download/v0.14.0/trivy_0.14.0_Linux-64bit.tar.gz | tar xz
+      - mv trivy /usr/local/bin/
   build:
     commands:
       - echo Build started on `date`
