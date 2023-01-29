@@ -39,9 +39,7 @@ phases:
       #- trivy -f json -o imagedefinitions.json --exit-code 1 --severity HIGH,CRITICAL --quiet --auto-refresh $REPOSITORY_URI:$IMAGE_TAG
       
 reports:
-    files: 
-    - "**/*"
-    - imagedefinitions.json
+    files: imagedefinitions.json
     
 artifacts:
     files: imagedefinitions.json
