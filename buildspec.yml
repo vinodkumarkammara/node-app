@@ -34,8 +34,9 @@ phases:
       - trivy $REPOSITORY_URI:$IMAGE_TAG > image-scan-report.html
       - trivy -v
       - trivy --no-progress --exit-code 0 --severity HIGH,CRITICAL --auto-refresh $REPOSITORY_URI:$IMAGE_TAG
-      #- trivy -f json -o imagedefinitions.json --exit-code 0 --severity HIGH,MEDIUM,LOW --quiet --auto-refresh $REPOSITORY_URI:$IMAGE_TAG
-      #- trivy -f json -o imagedefinitions.json --exit-code 1 --severity HIGH,CRITICAL --quiet --auto-refresh $REPOSITORY_URI:$IMAGE_TAG
+      
+      - echo performing performance testing
+      - mvn clean verify -f jmeter-pom.xml
 
 artifacts:
     files: imagedefinitions.json
